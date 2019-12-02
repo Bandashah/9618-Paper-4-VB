@@ -34,20 +34,12 @@ Module Module1
     Private Sub Command1_Click()
         RollNo = 0
         sName = ""
-        Try
-            FileOpen(1, My.Application.Info.DirectoryPath & "\stuFile.txt", OpenMode.Input)
-            While Not EOF(1)
-                Input(1, RollNo)
-                Input(1, sName)
-            End While
-            FileClose(1)
-        Catch
-        Finally
-        End Try
+        Console.Write("Enter Student Roll Number:")
+        RollNo = Console.ReadLin
         Console.Write("Enter Student Name:")
         sName = Console.ReadLine
         FileOpen(1, My.Application.Info.DirectoryPath & "\stuFile.txt", OpenMode.Append)
-        WriteLine(1, RollNo + 1, sName)
+        WriteLine(1, RollNo, sName)
         FileClose(1)
         Command2_Click()
     End Sub
