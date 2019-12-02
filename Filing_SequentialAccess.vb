@@ -17,12 +17,12 @@ Module Module1
             Console.Write("Your choice... ")
             choice = Console.ReadLine
             Select Case choice
-                Case 1 : Command1_Click()
-                Case 2 : Command2_Click()
-                Case 3 : Command3_Click()
-                Case 4 : Command4_Click()
-                Case 5 : Command5_Click()
-                Case 6 : Command6_Click()
+                Case 1 : APPEND()
+                Case 2 : READ()
+                Case 3 : ADD()
+                Case 4 : DELETE()
+                Case 5 : EDIT()
+                Case 6 : SEARCH()
                 Case 7
                 Case Else
                     Console.WriteLine("Wrong choice made... Press any key to continue.")
@@ -31,20 +31,20 @@ Module Module1
         End While
     End Sub
 
-    Private Sub Command1_Click()
+    Private Sub APPEND()
         RollNo = 0
         sName = ""
         Console.Write("Enter Student Roll Number:")
-        RollNo = Console.ReadLin
+        RollNo = Console.ReadLine()
         Console.Write("Enter Student Name:")
         sName = Console.ReadLine
         FileOpen(1, My.Application.Info.DirectoryPath & "\stuFile.txt", OpenMode.Append)
         WriteLine(1, RollNo, sName)
         FileClose(1)
-        Command2_Click()
+        READ()
     End Sub
 
-    Private Sub Command2_Click()
+    Private Sub READ()
         RollNo = 0
         sName = ""
         Console.Clear()
@@ -64,7 +64,7 @@ Module Module1
         End Try
     End Sub
 
-    Private Sub Command3_Click()
+    Private Sub ADD()
         Dim rn As Integer
         Dim nm As String
         Dim flag As Boolean
@@ -106,11 +106,11 @@ Module Module1
             WriteLine(1, rn, nm)
             FileClose(1)
         Finally
-            Command2_Click()
+            READ()
         End Try
     End Sub
 
-    Private Sub Command4_Click()
+    Private Sub DELETE()
         Dim rn As Integer
         RollNo = 0
         sName = ""
@@ -131,14 +131,14 @@ Module Module1
             FileClose(2)
             Kill(My.Application.Info.DirectoryPath & "\stuFile.txt")
             My.Computer.FileSystem.RenameFile(My.Application.Info.DirectoryPath & "\tempFile.txt", "stuFile.txt")
-            Command2_Click()
+            READ()
         Catch
             Console.WriteLine("File doesn't exist, so operation is not possible...")
             Console.ReadKey()
         End Try
     End Sub
 
-    Private Sub Command5_Click()
+    Private Sub EDIT()
         Dim rn As Integer
         Dim nm As String
         Dim flag As Boolean
@@ -172,14 +172,14 @@ Module Module1
                 Console.WriteLine("Record not found.")
                 Console.ReadKey()
             End If
-            Command2_Click()
+            READ()
         Catch
             Console.WriteLine("File doesn't exist, so operation is not possible...")
             Console.ReadKey()
         End Try
     End Sub
 
-    Private Sub Command6_Click()
+    Private Sub SEARCH()
         Dim rn As Integer
         Dim flag As Boolean
         RollNo = 0
@@ -230,5 +230,5 @@ Module Module1
         Finally
             recordChk = isFound
         End Try
-        End Function 
+    End Function
 End Module
