@@ -16,7 +16,7 @@ Module Module1
 
         'sort the elements
         For count = 0 To maxsize - 1
-            temp = height(count)
+            
             temp = height(count)
             insert = count
             While insert > 0 AndAlso height(insert - 1) >= temp
@@ -27,7 +27,7 @@ Module Module1
         Next
 
         'Print out the elements
-        For count = 0 To maxsize
+        For count = 0 To maxsize - 1
             Console.WriteLine(count & ": " & height(count))
         Next
         Console.ReadKey()
