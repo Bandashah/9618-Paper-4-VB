@@ -31,7 +31,27 @@ Module Module1
             tailpointer = currentpointer
         End If
     End Sub
+    Sub RemoveName()
+        ' Report error if Queue is empty
+        If HeadPointer = 0 Then
 
+            Console.WriteLine("Error")
+        Else
+            Console.WriteLine(queue(headpointer).name)
+            'current node is head of queue
+            currentpointer = headpointer
+            'update head pointer
+            headpointer = queue(currentpointer).pointer
+            'if only one element in queue,then update tail pointer
+            If HeadPointer = 0 Then
+
+                tailpointer = 0
+            End If
+            'link released node to free list
+            queue(currentpointer).pointer = freepointer
+            freepointer = currentpointer
+        End If
+    End Sub
     Sub main()
         headpointer = 0
         tailpointer = 0
@@ -47,9 +67,13 @@ Module Module1
 
 
         For c = 1 To 5
-            Console.Write(" the name in queue pointer number " & c & "is :")
-            Console.WriteLine(queue(c))
+            Console.Write(" the name in queue pointer number " & c & " is : ")
+            Console.WriteLine(queue(c).name)
         Next
+        Console.WriteLine()
+        RemoveName()
+        RemoveName()
+        Console.ReadKey()
     End Sub
 
 End Module
