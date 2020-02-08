@@ -1,0 +1,88 @@
+'TASK 1.4 A2 Paper 4 PRM 2019 MJ
+'Binary Tree Using Arrays
+Module Module1
+
+    'Binary Tree ADT
+    Structure BT
+        Dim LeftPointer As Integer
+        Dim Data As String
+        Dim RightPointer As Integer
+    End Structure
+
+    'Array based on Binary Tree ADT
+    Dim dsBT(0 To 9) As BT
+
+    Sub Main()
+        Dim r As Integer
+        Dim Count As Integer
+        Dim valBT As String
+        Dim moreDE As Boolean = False
+        r = 0
+        'Initialise whole array. LP/RP to Null 0, Data to Null ""
+        For Count = 0 To 9
+            dsBT(Count).LeftPointer = 0
+            dsBT(Count).Data = ""
+            dsBT(Count).RightPointer = 0
+        Next
+        'Input game name and call insert function
+        For Count = 0 To 9
+            Console.Write("Enter Name " & Count + 1 & ": ")
+            valBT = Console.ReadLine()
+            insertBT(valBT)
+        Next
+        'Display binary tree after insertion
+        For Count = 0 To 9
+            Console.WriteLine(Count & Space(7) & dsBT(Count).LeftPointer & " " & dsBT(Count).Data & Space(27 - Len(dsBT(Count).Data)) & dsBT(Count).RightPointer)
+        Next
+
+        TraverseTree(r)
+        Console.ReadKey()
+    End Sub
+    Sub insertBT(ByVal val As String)
+        Dim currPos As Integer = 0
+        Dim tPos As Integer = 0
+        While True
+            If dsBT(currPos).Data = "" Then
+                dsBT(currPos).Data = val
+                Exit While
+            ElseIf val > dsBT(currPos).Data Then
+                If dsBT(currPos).RightPointer = 0 Then
+                    tPos = currPos
+                    While dsBT(tPos).Data <> ""
+                        tPos = tPos + 1
+                    End While
+                    dsBT(tPos).Data = val
+                    dsBT(currPos).RightPointer = tPos
+                    Exit While
+                Else
+                    currPos = dsBT(currPos).RightPointer
+                End If
+            Else
+                If dsBT(currPos).LeftPointer = 0 Then
+                    tPos = currPos
+                    While dsBT(tPos).Data <> ""
+                        tPos = tPos + 1
+                    End While
+                    dsBT(tPos).Data = val
+                    dsBT(currPos).LeftPointer = tPos
+                    Exit While
+                Else
+                    currPos = dsBT(currPos).LeftPointer
+                End If
+            End If
+        End While
+    End Sub
+
+    Sub TraverseTree(ByVal Root As Integer)
+        If dsBT(Root).LeftPointer <> 0 Then
+
+            TraverseTree(dsBT(Root).LeftPointer)
+        End If
+        Console.WriteLine(dsBT(Root).Data)
+        If dsBT(Root).RightPointer <> 0 Then
+
+            TraverseTree(dsBT(Root).RightPointer)
+        End If
+    End Sub
+
+End Module
