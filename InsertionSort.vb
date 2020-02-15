@@ -17,7 +17,6 @@ Module Module1
         'sort the elements
         For count = 0 To maxsize - 1
             temp = height(count)
-            temp = height(count)
             insert = count
             While insert > 0 AndAlso height(insert - 1) >= temp
                 height(insert) = height(insert - 1)
