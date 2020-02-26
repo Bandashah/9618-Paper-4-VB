@@ -65,7 +65,7 @@ Module Module1
         S1.DOB = Console.ReadLine()
 
         Dim RecNum As Integer
-        FileOpen(1, My.Application.Info.DirectoryPath & "\Zafar.dat", _
+FileOpen(1, My.Application.Info.DirectoryPath & "\strec.dat", _
                  OpenMode.Random, OpenAccess.ReadWrite, , Len(S1))
         RecNum = LOF(1) / Len(S1)
         RecNum = RecNum + 1
@@ -76,7 +76,7 @@ Module Module1
     Function RecSearcher(ByVal RN As Integer) As Boolean
         Dim S1 As StuType
         Dim RecNum As Integer
-        FileOpen(1, My.Application.Info.DirectoryPath & "\Zafar.dat", _
+FileOpen(1, My.Application.Info.DirectoryPath & "\strec.dat", _
                  OpenMode.Random, OpenAccess.ReadWrite, , Len(S1))
         RecNum = LOF(1) / Len(S1)
         If RN > RecNum Then
