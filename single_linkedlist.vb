@@ -5,7 +5,7 @@ Module Module1
         Dim Pointer As Integer
     End Structure
 
-    Dim List1(11) As LinkedList
+    Dim List1(4) As LinkedList
     Dim d As String
     Dim Free As Integer = 0
     Dim Temp, Temp2 As Integer
@@ -27,10 +27,10 @@ Module Module1
             MenuOption = Console.ReadLine
 
             Select Case MenuOption
-                Case 1 : ListAdd()
-                Case 2 : listDelete()
-                Case 3 : ListDisplay()
-                Case 4 : ListSearch()
+                Case 1 : Insert()
+                Case 2 : Delete()
+                Case 3 : Display()
+                Case 4 : Search()
             End Select
 
         Loop Until MenuOption = 0
@@ -39,21 +39,21 @@ Module Module1
 
     Sub listInitialise()
         Dim i As Integer
-        For i = 0 To 11
+        For i = 0 To 4
             List1(i).Data = ""
             List1(i).Pointer = -1
         Next
     End Sub
 
-    Sub ListDisplay()
+    Sub Display()
         Dim a As Integer
-        For a = 0 To 11
+        For a = 0 To 4
             Console.WriteLine(a & ".      " & List1(a).Data & " : " & List1(a).Pointer)
         Next
         Console.ReadKey()
     End Sub
 
-    Sub ListAdd()
+    Sub Insert()
         Console.Write("Enter item to add.....")
         d = Console.ReadLine()
 
@@ -63,15 +63,15 @@ Module Module1
             If Free = 0 Then
                 List1(Free).Data = d
                 ListStart = Free
-                IIf(List1(Free).Pointer = -1, Free = Free + 1, Free = List1(Free).Pointer)
-                If Free = 12 Then Free = -1
+                If List1(Free).Pointer = -1 Then Free = Free + 1 Else Free = List1(Free).Pointer
+                If Free = 5 Then Free = -1
             Else
                 If List1(ListStart).Data > d Then
                     List1(Free).Data = d
                     List1(Free).Pointer = ListStart
                     ListStart = Free
-                    IIf(List1(Free).Pointer = -1, Free = Free + 1, Free = List1(Free).Pointer)
-                    If Free = 12 Then Free = -1
+                    If List1(Free).Pointer = -1 Then Free = Free + 1 Else Free = List1(Free).Pointer
+                    If Free = 5 Then Free = -1
                 Else
                     Current = ListStart
                     While List1(List1(Current).Pointer).Data < d
@@ -84,14 +84,14 @@ Module Module1
                     Temp = List1(Current).Pointer
                     List1(Current).Pointer = Free
                     List1(Free).Pointer = Temp
-                    IIf(List1(Free).Pointer = -1, Free = Free + 1, Free = List1(Free).Pointer)
-                    If Free = 12 Then Free = -1
+                    If List1(Free).Pointer = -1 Then Free = Free + 1 Else Free = List1(Free).Pointer
+                    If Free = 5 Then Free = -1
                 End If
             End If
         End If
     End Sub
 
-    Sub listDelete()
+    Sub Delete()
         Dim isDeleted As Boolean = False
         d = Console.ReadLine()
         If ListStart = -1 Then
@@ -121,7 +121,7 @@ Module Module1
         End If
     End Sub
 
-    Sub ListSearch()
+    Sub Search()
         d = Console.ReadLine()
 
         Current = ListStart
